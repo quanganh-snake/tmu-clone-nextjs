@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layouts/Header";
 import { getCurrentSession } from "@/actions/auth";
 import { SanityLive } from "@/sanity/lib/live";
+import HeaderCategorySelector from "@/components/layouts/HeaderCategorySelector";
 
 const interFont = localFont({
 	src: [
@@ -70,7 +71,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${interFont.className} antialiased bg-white min-h-[125vh]`}>
-				<Header user={user} />
+				<Header user={user} categorySelector={<HeaderCategorySelector />} />
 				{children}
 				<SanityLive />
 			</body>
