@@ -40,10 +40,10 @@ export const getProductByCategorySlug = async (slug: string) => {
 export const searchProducts = async (searchQuery: string) => {
   // const query = `*[_type == "product"]`;
   const query = `*[_type == "product" && (
-    title match $searchQuery ||
-    description match $searchQuery ||
-    category->title match $searchQuery ||
-    category->slug.current match $searchQuery
+    title match "*" + $searchQuery + "*" ||
+    description match "*" + $searchQuery + "*" ||
+    category->title match "*" + $searchQuery + "*" ||
+    category->slug.current match "*" + $searchQuery + "*"
   )]`;
 
   const products = await sanityFetch({ query, params: { searchQuery } });
