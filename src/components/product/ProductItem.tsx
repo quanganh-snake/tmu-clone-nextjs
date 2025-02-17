@@ -2,6 +2,8 @@ import React from "react";
 import { Product } from "../../../sanity.types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
+import { generateProductSlug } from "@/lib/utils";
 
 type TProductItemProps = {
 	product: Product;
@@ -29,7 +31,12 @@ const ProductItem = ({ product }: TProductItemProps) => {
 						<div className="text-xs text-green-500 font-semibold mb-2">
 							🔥 {100 + Math.abs(product._id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) % 500)}+ sold in last 24h
 						</div>
-						<button className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded-full text-sm font-bold hover:brightness-110 transition-all">GRAB IT NOW!</button>
+						<Link
+							href={`/product/${generateProductSlug(product.title as string, product._id)}`}
+							className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded-full text-sm text-center font-bold hover:brightness-110 transition-all"
+						>
+							GRAB IT NOW!
+						</Link>
 						<div className="text-xs text-red-500 text-center mt-1 animate-pulse">⚡ Limited time offer!</div>
 					</div>
 				</div>
